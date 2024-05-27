@@ -11,12 +11,21 @@ function App() {
   useEffect(() => {
     setNotesList(DUMMY_NOTES);
   }, [notesList]);
-  console.log(notesList)
+
+  const updateNoteItem = (updatedNote: INote) => {
+    const updateList = notesList.map((note: INote) => {
+      if (note._id === updatedNote._id) return updatedNote;
+      else return note;
+    });
+
+    setNotesList(updateList);
+  };
+
   return (
     <div className="App">
       <div className="notes-list">
         {notesList.map((noteItem, index) => (
-          <Note note={noteItem} key={index} />
+          <Note note={noteItem} onNoteUpdate={updateNoteItem} key={index} />
         ))}
       </div>
     </div>
