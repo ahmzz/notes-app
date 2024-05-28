@@ -8,6 +8,7 @@ type Props = {
 
 const Note: FC<Props> = ({ note, onNoteUpdate }) => {
   const noteNoteUpdate = (event: FocusEvent<HTMLDivElement>) => {
+    if (event.currentTarget.textContent === note.text) return;
     const updatedNote: INote = {
       ...note,
       text: event.currentTarget.textContent || "",
